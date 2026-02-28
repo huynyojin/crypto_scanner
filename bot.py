@@ -1,14 +1,13 @@
 import requests
 
-url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+def get_btc_price():
+    url = "https://api.coinbase.com/v2/prices/BTC-USD/spot"
+    response = requests.get(url)
+    data = response.json()
 
-response = requests.get(url)
-data = response.json()
+    price = data["data"]["amount"]
+    return price
 
-print("Full JSON:", data)
-
-if "price" in data:
-    price = data["price"]
-    print(f"🔥 BTC Price: {price} USDT")
-else:
-    print("Unexpected response format")
+if __name__ == "__main__":
+    price = get_btc_price()
+    print(f"🔥 BTC price: {price} USD")
