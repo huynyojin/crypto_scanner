@@ -1,7 +1,10 @@
 import requests
 
-url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+url = "https://api.coinbase.com/v2/prices/BTC-USD/spot"
 
 response = requests.get(url)
-print("Status code:", response.status_code)
-print("Raw response:", response.text)
+data = response.json()
+
+price = data["data"]["amount"]
+
+print(f"BTC Price: {price} USD")
